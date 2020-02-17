@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like-Button-DOM</title>
+</head>
+<!-- This project is about creation a Like Button that will change its color after a click 
+and same time we can see the number of likes (clicks). 
+The color will be change either Random either after a click -->
+
+<body>
+
+    <script>
+        //create Element button
+        const newbutton = document.createElement("button");
+        //append this button in document.body   
+        document.body.appendChild(newbutton);
+        //create textNode "LikeMe"                  
+        const textINbutton = document.createTextNode("LikeMe");
+        //apend this textNode to bewbutton Element
+        newbutton.appendChild(textINbutton);
+        //create Element(tag) <br> (change line)
+        const brElement = document.createElement("br");
+        //appent this Element in body        
+        document.body.appendChild(brElement);
+
+        let counter = 0;
+        //create element <a>
+        const counterElement = document.createElement("a");
+        //apent this element in body   
+        document.body.appendChild(counterElement);
+        //create id="number"             
+        counterElement.setAttribute("id", "numberID");
+
+        const textINcounterElement = document.createTextNode("number of likes before click : " + counter);
+        console.log(counterElement);
+        //<a id="numberID">number of likes before click : 0</a> 
+
+        //apend the text in element (counterElement)
+        counterElement.appendChild(textINcounterElement);
+
+        // doesn't need. Element button is already exist
+        // const btn = document.querySelector("button");  
+        // doesn't need. Element counterElement is already exist       
+        // const likes = document.getElementById("numberID");
+
+        newbutton.addEventListener('click', function (event) {
+            //after a click the counter ++    
+            counter++;
+            counterElement.innerHTML = "number of likes after click : " + counter;
+            //the button color changes by random color                       
+            newbutton.style.backgroundColor = getRandomColor();
+
+            //the button color changes blue if counter is 'odd' else red (if counter is 'even')
+            //newbutton.style.backgroundColor=(counter % 2 != 0) ? "blue" : "red"; 
+        });
+        // function returns Random color
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+</body>
+
+</html>
